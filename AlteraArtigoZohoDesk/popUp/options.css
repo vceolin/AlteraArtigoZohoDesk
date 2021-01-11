@@ -1,6 +1,9 @@
-#mainPopup {
-    padding: 10px;
-    height: 1000px;
-    width: 1000px;
-    font-family: Helvetica, Ubuntu, Arial, sans-serif;
+body
+{
+    width:200px;
+}
+/*Remover a borda arredondada dos elementos do bootstrap*/
+*
+{
+    border-radius: 0 !important;
 }
