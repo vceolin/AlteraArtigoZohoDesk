@@ -12,13 +12,16 @@ if(opcao == "LixeiraAnalytics")
 
     function iniciarRestauracao()
     {
-        //verifica se não possui a classe que diz que a lixeira está selecionada
-        if(!document.getElementsByClassName("trashNav")[0].classList.contains("navOptSelected"))
+        //primeiro verifica se está numa tela que existe a lixeira, para não haver erro
+        if(document.getElementsByClassName("trashNav") != null)
         {
-            document.getElementsByClassName("trashNav")[0].click();
-            console.log("############### Clicou na lixeira!");
+            //verifica se não possui a classe que diz que a lixeira está selecionada
+            if(!document.getElementsByClassName("trashNav")[0].classList.contains("navOptSelected"))
+            {
+                document.getElementsByClassName("trashNav")[0].click();
+                console.log("############### Clicou na lixeira!");
+            }
         }
-        
         //aguarda 5 segundos antes de rodar
         setTimeout(marcarObjetos, 5000);
     }
