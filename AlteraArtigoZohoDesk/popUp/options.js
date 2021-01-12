@@ -1,18 +1,20 @@
+//variavel que armazena a opcao selecionada
+var opcao = "";
+//constante para definir os nomes que serão salvos
+const ids = ["LixeiraAnalytics", "ArtigoDesk", "Desativado"]
 $(function()
 {
-    //constante para definir os nomes que serão salvos
-    const ids = ["LixeiraAnalytics", "ArtigoDesk", "Desativado"]
-    var opcao;
+
 
     //pega o valor da opção selecionada no storage do chrome
     chrome.storage.sync.get("opcaoSelecionada", function (result) 
     {
         opcao = result.opcaoSelecionada;
-        console.log(opcao);
     });
 
+    console.log(opcao);
     //Roda a função de colorir o botão a primeira vez para recuperar a cor do selecionado antes
-    colorirBotao(opcao)
+    colorirBotao(opcao);
 
     //botões
     $("#btnLixeiraAnalytics").click(function()
@@ -48,5 +50,7 @@ $(function()
         chrome.storage.sync.set({
             opcaoSelecionada: _opcaoSelecionada
         });
+        //muda o valor da variavel opcao
+        opcao = _opcaoSelecionada
     }
 })

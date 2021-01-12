@@ -1,80 +1,78 @@
 //Pega a opção selecionada no pop up
-var opcao;
-
-chrome.storage.sync.get('opcaoSelecionada', function (result) 
+var opcao
+chrome.storage.sync.get("opcaoSelecionada", function (result) 
 {
     opcao = result.opcaoSelecionada;
-});
-
-//Só se executa esse script se a opção selecioanda for ArtigoDesk
-if(opcao == "ArtigoDesk")
-{
-    const intervaloTempo = 1000; //Altere esse valor para mudar de quanto em quanto tempo o método retirarLabel será chamado
-    console.log("############### Rodou!");
-    setTimeout(clicarDropDown, intervaloTempo); //primeira instrução
-
-    function clicarDropDown()
+    //Só se executa esse script se a opção selecioanda for ArtigoDesk
+    if (opcao == "ArtigoDesk") 
     {
-        var dropdown = document.querySelector('[editor-command="insertoptions"]');
+        const intervaloTempo = 1000; //Altere esse valor para mudar de quanto em quanto tempo o método retirarLabel será chamado
+        console.log("############### Rodou!");
+        setTimeout(clicarDropDown, intervaloTempo); //primeira instrução
 
-        if(dropdown != null)
+        function clicarDropDown() 
         {
-            console.log("############### DropDown encontrado!");
-            dropdown.click();
-            setTimeout(clicarEditHtml, intervaloTempo);
-        }
-        else //se for nulo tenta novamente em 1 segundo
-        {
-            setTimeout(clicarDropDown, intervaloTempo);
-        }
-    }
+            var dropdown = document.querySelector('[editor-command="insertoptions"]');
 
-    function clicarEditHtml()
-    {
-        var edit = document.querySelector('[data-insertoptions="edithtml"]');
-        if(edit != null)
-        {
-            console.log("############### Botão editar encontrado!");
-            edit.click();
-            setTimeout(executarReplace, intervaloTempo);
+            if (dropdown != null) 
+            {
+                console.log("############### DropDown encontrado!");
+                dropdown.click();
+                setTimeout(clicarEditHtml, intervaloTempo);
+            }
+            else //se for nulo tenta novamente em 1 segundo
+            {
+                setTimeout(clicarDropDown, intervaloTempo);
+            }
         }
-        else //se for nulo volta para o clicar dropDown
+
+        function clicarEditHtml() 
         {
-            /*
-            é necessário voltar para o clicar dropDown pois às vezes ele é encontrado
-            antes de ser totalmente carregado, então ao clicar nele não acontece nada e,
-            portanto, não carrega o botão "edit"
-            */
-            setTimeout(clicarDropDown, intervaloTempo);
+            var edit = document.querySelector('[data-insertoptions="edithtml"]');
+            if (edit != null) 
+            {
+                console.log("############### Botão editar encontrado!");
+                edit.click();
+                setTimeout(executarReplace, intervaloTempo);
+            }
+            else //se for nulo volta para o clicar dropDown
+            {
+                /*
+                é necessário voltar para o clicar dropDown pois às vezes ele é encontrado
+                antes de ser totalmente carregado, então ao clicar nele não acontece nada e,
+                portanto, não carrega o botão "edit"
+                */
+                setTimeout(clicarDropDown, intervaloTempo);
+            }
+
         }
-        
-    }
 
-    function executarReplace()
-    {
-        document.getElementsByClassName("ze_ed_txtarea")[0].value = document.getElementsByClassName("ze_ed_txtarea")[0].value.replaceAll("suporte.groupsoftware.com.br", "desk.zoho.com");
-        console.log("############### Alteração realizada!");
-        setTimeout(clicarSalvar, intervaloTempo);
-    }
-
-    function clicarSalvar()
-    {
-        document.getElementById("zdeditor_htmlview_insert").click();
-        console.log("############### Botão salvar clicado!");
-        setTimeout(clicarPublicar, intervaloTempo);
-    }
-
-    function clicarPublicar()
-    {
-        var publicar = document.getElementById("publish_btn")
-        if(publicar != null)
+        function executarReplace() 
         {
-            console.log("############### Botão publicar encontrado!");
-            publicar.click();
+            document.getElementsByClassName("ze_ed_txtarea")[0].value = document.getElementsByClassName("ze_ed_txtarea")[0].value.replaceAll("suporte.groupsoftware.com.br", "desk.zoho.com");
+            console.log("############### Alteração realizada!");
+            setTimeout(clicarSalvar, intervaloTempo);
         }
-        else //se for nulo tenta novamente em 1 segundo
+
+        function clicarSalvar() 
         {
+            document.getElementById("zdeditor_htmlview_insert").click();
+            console.log("############### Botão salvar clicado!");
             setTimeout(clicarPublicar, intervaloTempo);
         }
+
+        function clicarPublicar() 
+        {
+            var publicar = document.getElementById("publish_btn")
+            if (publicar != null) 
+            {
+                console.log("############### Botão publicar encontrado!");
+                publicar.click();
+            }
+            else //se for nulo tenta novamente em 1 segundo
+            {
+                setTimeout(clicarPublicar, intervaloTempo);
+            }
+        }
     }
-}
+});
