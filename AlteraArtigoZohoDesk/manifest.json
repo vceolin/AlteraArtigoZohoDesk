@@ -33,6 +33,7 @@
     {
       "matches": ["*://desk.zoho.com/*"],
       "run_at": "document_idle",
+      "run_at": "document_end",
       "all_frames": true,
       "js": ["contentScripts/contentScriptDesk.js"]
     },
@@ -40,6 +41,7 @@
     {
       "matches": ["*://analytics.zoho.com/*"],
       "run_at": "document_idle",
+      "run_at": "document_end",
       "all_frames": true,
       "js": ["contentScripts/contentScriptAnalytics.js"]
     }
