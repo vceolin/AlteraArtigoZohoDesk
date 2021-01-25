@@ -7,8 +7,9 @@
   "permissions": 
   [
     "storage",
-    "*://desk.zoho.com/support/groupsoftwaresolucoes/ShowHomePage.do?articlestatus=latest#Solutions/edit/*",
-    "*://analytics.zoho.com/*"
+    "*://desk.zoho.com/*",
+    "*://analytics.zoho.com/*",
+    "*://projects.zoho.com/*"
   ],
   "author": "Vitor Ceolin Porfírio Guerra",
 
@@ -32,7 +33,6 @@
   "content_scripts": [
     {
       "matches": ["*://desk.zoho.com/*"],
-      "run_at": "document_idle",
       "run_at": "document_end",
       "all_frames": true,
       "js": ["contentScripts/contentScriptDesk.js"]
@@ -40,10 +40,16 @@
 
     {
       "matches": ["*://analytics.zoho.com/*"],
-      "run_at": "document_idle",
       "run_at": "document_end",
       "all_frames": true,
       "js": ["contentScripts/contentScriptAnalytics.js"]
+    },
+
+    {
+      "matches": ["*://projects.zoho.com/*"],
+      "run_at": "document_end",
+      "all_frames": true,
+      "js": ["contentScripts/contentScriptProjects.js"]
     }
   ], 
 

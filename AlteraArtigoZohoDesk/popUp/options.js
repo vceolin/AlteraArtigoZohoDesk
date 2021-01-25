@@ -1,7 +1,7 @@
 //variavel que armazena a opcao selecionada
 var opcao = "";
 //constante para definir os nomes que serão salvos
-const ids = ["LixeiraAnalytics", "ArtigoDesk", "Desativado"]
+const ids = ["LixeiraAnalytics", "ArtigoDesk", "LimparProjects", "Desativado"]
 $(function()
 {
 
@@ -27,10 +27,15 @@ $(function()
         colorirBotao(ids[1]);
         salvarConfiguracao(ids[1]);
     });
-    $("#btnDesativado").click(function()
+    $("#btnLimparProjects").click(function()
     {
         colorirBotao(ids[2]);
         salvarConfiguracao(ids[2]);
+    });
+    $("#btnDesativado").click(function()
+    {
+        colorirBotao(ids[3]);
+        salvarConfiguracao(ids[3]);
     });
 
     // Colore o botão para aparecer como selecionado
